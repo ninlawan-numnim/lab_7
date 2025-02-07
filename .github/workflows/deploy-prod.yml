@@ -20,4 +20,12 @@ jobs:
           source: "./html/*"
           target: "/var/www/html"
           strip_components: 1
-    
+      - name: set the root user back as the owner of the /var/www/html directory for ubuntu 24+
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.SSH_USER_NAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+              sudo chown -R root /var/www/html
+        
