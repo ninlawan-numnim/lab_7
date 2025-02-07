@@ -20,6 +20,4 @@ jobs:
           source: "./html/*"
           target: "/var/www/html"
           strip_components: 1
-      - name: Set Permissions on Server
-        run: ssh -o StrictHostKeyChecking=no username@remote_server "sudo chown -R $(whoami):$(whoami) /var/www/html && sudo chmod -R 755 /var/www/html"
-        
+    
