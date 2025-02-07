@@ -37,6 +37,9 @@ jobs:
             sudo mkdir -p /var/www/html
             sudo chown -R ${{secrets.SSH_USER_NAME}}:${{secrets.SSH_USER_NAME}} /var/www/html
 
+      - name: Set Permissions on Server
+        run: ssh -o StrictHostKeyChecking=no username@remote_server "sudo chown -R $(whoami):$(whoami) /var/www/html && sudo chmod -R 755 /var/www/html"
+          
       - name: copy file to server
         uses: appleboy/scp-action@master
         with:
